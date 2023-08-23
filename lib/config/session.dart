@@ -22,7 +22,7 @@ class Session {
     UserModel user = UserModel(); // default value
     final pref = await SharedPreferences.getInstance();
     String? stringUser = pref.getString('user');
-    if (stringUser!.isNotEmpty) {
+    if (stringUser != null && stringUser.isNotEmpty) {
       Map<String, dynamic> mapUser = jsonDecode(stringUser);
       user = UserModel.fromJson(mapUser);
     }

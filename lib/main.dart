@@ -8,6 +8,7 @@ import 'package:hotelio_app/config/session.dart';
 import 'package:hotelio_app/firebase_options.dart';
 import 'package:hotelio_app/models/user_model.dart';
 import 'package:hotelio_app/pages/intro_page.dart';
+import 'package:hotelio_app/pages/sign_in_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'pages/home_page.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
         },
         AppRoute.intro: (context) => IntroPage(),
         AppRoute.home: (context) => HomePage(),
-        AppRoute.signin: (context) => HomePage(),
+        AppRoute.signin: (context) => SignInPage(),
         AppRoute.detail: (context) => HomePage(),
         AppRoute.checkout: (context) => HomePage(),
         AppRoute.checkoutSuccess: (context) => HomePage(),
