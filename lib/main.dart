@@ -7,6 +7,7 @@ import 'package:hotelio_app/config/app.route.dart';
 import 'package:hotelio_app/config/session.dart';
 import 'package:hotelio_app/firebase_options.dart';
 import 'package:hotelio_app/models/user_model.dart';
+import 'package:hotelio_app/pages/detail_page.dart';
 import 'package:hotelio_app/pages/intro_page.dart';
 import 'package:hotelio_app/pages/sign_in_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -45,15 +46,15 @@ class MyApp extends StatelessWidget {
               if (snapshot.data == null || snapshot.data!.id == null) {
                 return const IntroPage();
               } else {
-                return const HomePage();
+                return HomePage();
               }
             },
           );
         },
-        AppRoute.intro: (context) => IntroPage(),
+        AppRoute.intro: (context) => const IntroPage(),
         AppRoute.home: (context) => HomePage(),
         AppRoute.signin: (context) => SignInPage(),
-        AppRoute.detail: (context) => HomePage(),
+        AppRoute.detail: (context) => const DetailPage(),
         AppRoute.checkout: (context) => HomePage(),
         AppRoute.checkoutSuccess: (context) => HomePage(),
         AppRoute.detailBooking: (context) => HomePage(),
