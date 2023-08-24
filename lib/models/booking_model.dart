@@ -1,6 +1,6 @@
 class BookingModel {
   String id;
-  String idHote;
+  String idHotel;
   String cover;
   String name;
   String location;
@@ -10,14 +10,14 @@ class BookingModel {
   String checkInTime;
   int night;
   int serviceFee;
-  int activites;
+  int activities;
   int totalPayment;
   String status;
   bool isDone;
 
   BookingModel({
     required this.id,
-    required this.idHote,
+    required this.idHotel,
     required this.cover,
     required this.name,
     required this.location,
@@ -27,7 +27,7 @@ class BookingModel {
     required this.checkInTime,
     required this.night,
     required this.serviceFee,
-    required this.activites,
+    required this.activities,
     required this.totalPayment,
     required this.status,
     required this.isDone,
@@ -35,7 +35,7 @@ class BookingModel {
 
   factory BookingModel.fromJson(Map<String, dynamic> json) => BookingModel(
         id: json["id"],
-        idHote: json["id_hote"],
+        idHotel: json["id_hotel"],
         cover: json["cover"],
         name: json["name"],
         location: json["location"],
@@ -45,7 +45,7 @@ class BookingModel {
         checkInTime: json["check_in_time"],
         night: json["night"],
         serviceFee: json["service_fee"],
-        activites: json["activites"],
+        activities: json["activities"],
         totalPayment: json["total_payment"],
         status: json["status"],
         isDone: json["is_done"],
@@ -53,7 +53,7 @@ class BookingModel {
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "id_hote": idHote,
+        "id_hotel": idHotel,
         "cover": cover,
         "name": name,
         "location": location,
@@ -63,9 +63,27 @@ class BookingModel {
         "check_in_time": checkInTime,
         "night": night,
         "service_fee": serviceFee,
-        "activites": activites,
+        "activities": activities,
         "total_payment": totalPayment,
         "status": status,
         "is_done": isDone,
       };
 }
+
+BookingModel get initBooking => BookingModel(
+      id: '',
+      idHotel: '',
+      cover: '',
+      name: '',
+      location: '',
+      date: '',
+      guest: 0,
+      breakfast: '',
+      checkInTime: '',
+      night: 0,
+      serviceFee: 0,
+      activities: 0,
+      totalPayment: 0,
+      status: '',
+      isDone: false,
+    );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hotelio_app/config/app.color.dart';
 
-class ButtomCustom extends StatelessWidget {
-  const ButtomCustom({
+class ButtonCustom extends StatelessWidget {
+  const ButtonCustom({
     super.key,
     required this.label,
     required this.onTap,

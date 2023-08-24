@@ -4,7 +4,7 @@ import 'package:hotelio_app/config/app.assets.dart';
 import 'package:hotelio_app/config/app.color.dart';
 import 'package:hotelio_app/config/app.route.dart';
 import 'package:hotelio_app/source/user_source.dart';
-import 'package:hotelio_app/widgets/buttom_custom.dart';
+import 'package:hotelio_app/widgets/button_custom.dart';
 
 class SignInPage extends StatelessWidget {
   SignInPage({super.key});
@@ -124,7 +124,7 @@ class SignInPage extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                           vertical: 30,
                         ),
-                        child: ButtomCustom(
+                        child: ButtonCustom(
                           label: "Sign In",
                           onTap: () => login(context),
                           isExpanded: true,

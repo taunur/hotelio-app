@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotelio_app/config/app.assets.dart';
 import 'package:hotelio_app/config/app.route.dart';
-import 'package:hotelio_app/widgets/buttom_custom.dart';
+import 'package:hotelio_app/widgets/button_custom.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
@@ -55,7 +55,7 @@ class IntroPage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              ButtomCustom(
+              ButtonCustom(
                 label: 'Get Started',
                 onTap: () {
                   Navigator.pushReplacementNamed(context, AppRoute.signin);
