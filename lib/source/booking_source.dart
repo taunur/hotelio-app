@@ -18,4 +18,14 @@ class BookingSource {
     }
     return null;
   }
+
+  static Future<bool> addBooking(String userId, BookingModel booking) async {
+    var ref = FirebaseFirestore.instance
+        .collection('User')
+        .doc(userId)
+        .collection('Booking');
+    var docRef = await ref.add(booking.toJson());
+    docRef.update({'id': docRef.id});
+    return true;
+  }
 }
