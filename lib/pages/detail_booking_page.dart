@@ -5,21 +5,16 @@ import 'package:hotelio_app/config/app.color.dart';
 import 'package:hotelio_app/config/app.format.dart';
 import 'package:hotelio_app/controller/c_user.dart';
 import 'package:hotelio_app/models/booking_model.dart';
-import 'package:hotelio_app/models/hotel_model.dart';
-import 'package:hotelio_app/source/booking_source.dart';
-import 'package:hotelio_app/widgets/button_custom.dart';
-import 'package:intl/intl.dart';
 
-import '../config/app.route.dart';
-
-class CheckoutPage extends StatelessWidget {
-  CheckoutPage({super.key});
+class DetailBookingPage extends StatelessWidget {
+  DetailBookingPage({super.key});
 
   final cUser = Get.put(CUSer());
 
   @override
   Widget build(BuildContext context) {
-    HotelModel hotel = ModalRoute.of(context)!.settings.arguments as HotelModel;
+    BookingModel booking =
+        ModalRoute.of(context)!.settings.arguments as BookingModel;
 
     return Scaffold(
       appBar: AppBar(
@@ -28,7 +23,7 @@ class CheckoutPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         title: const Text(
-          "Hotel Details",
+          "Detail Booking",
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -38,43 +33,12 @@ class CheckoutPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          header(hotel, context),
+          header(booking, context),
           const SizedBox(height: 16),
-          roomDetails(context, hotel),
+          roomDetails(context, booking),
           const SizedBox(height: 16),
           paymentMethod(context),
           const SizedBox(height: 20),
-          ButtonCustom(
-            label: "Proceed to Payment",
-            isExpanded: true,
-            onTap: () {
-              BookingSource.addBooking(
-                cUser.data.id!,
-                BookingModel(
-                  id: '',
-                  idHotel: hotel.id,
-                  cover: hotel.cover,
-                  name: hotel.name,
-                  location: hotel.location,
-                  date: DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                  guest: 1,
-                  breakfast: 'Include',
-                  checkInTime: DateFormat('HH:mm a').format(DateTime.now()),
-                  night: 2,
-                  serviceFee: 150000,
-                  activities: 350000,
-                  totalPayment: hotel.price + 2 + 150000 + 350000,
-                  status: 'PAID',
-                  isDone: false,
-                ),
-              );
-              Navigator.pushNamed(
-                context,
-                AppRoute.checkoutSuccess,
-                arguments: hotel,
-              );
-            },
-          ),
           const SizedBox(height: 8),
         ],
       ),
@@ -146,7 +110,7 @@ class CheckoutPage extends StatelessWidget {
     );
   }
 
-  Container roomDetails(BuildContext context, HotelModel hotel) {
+  Container roomDetails(BuildContext context, BookingModel booking) {
     return Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -167,42 +131,42 @@ class CheckoutPage extends StatelessWidget {
             itemRoomDetails(
               context,
               "Date",
-              AppFormat.date(DateTime.now().toString()),
+              booking.date,
             ),
             itemRoomDetails(
               context,
               "Guest",
-              "2 Guest",
+              "${booking.guest} Guest",
             ),
             itemRoomDetails(
               context,
               "Breakfast",
-              "Included",
+              booking.breakfast,
             ),
             itemRoomDetails(
               context,
               "Check-in Time",
-              "14:00 WIB",
+              booking.checkInTime,
             ),
             itemRoomDetails(
               context,
-              "1 night",
-              AppFormat.currency(hotel.price.toDouble()),
+              "${booking.night} night",
+              AppFormat.currency(1250000),
             ),
             itemRoomDetails(
               context,
               "Service Fee",
-              AppFormat.currency(150000),
+              AppFormat.currency(booking.serviceFee.toDouble()),
             ),
             itemRoomDetails(
               context,
               "Activities",
-              AppFormat.currency(350000),
+              AppFormat.currency(booking.activities.toDouble()),
             ),
             itemRoomDetails(
               context,
               "Total Payment",
-              AppFormat.currency(1750000),
+              AppFormat.currency(booking.totalPayment.toDouble()),
             ),
           ],
         ));
@@ -232,7 +196,7 @@ class CheckoutPage extends StatelessWidget {
     );
   }
 
-  Container header(HotelModel hotel, BuildContext context) {
+  Container header(BookingModel booking, BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -244,7 +208,7 @@ class CheckoutPage extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.network(
-              hotel.cover,
+              booking.cover,
               fit: BoxFit.cover,
               height: 70,
               width: 90,
@@ -256,7 +220,7 @@ class CheckoutPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  hotel.name,
+                  booking.name,
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
@@ -264,7 +228,7 @@ class CheckoutPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  hotel.location,
+                  booking.location,
                   style: const TextStyle(color: Colors.grey),
                 ),
               ],

@@ -28,4 +28,13 @@ class BookingSource {
     docRef.update({'id': docRef.id});
     return true;
   }
+
+  static Future<List<BookingModel>> getHistory(String id) async {
+    var result = await FirebaseFirestore.instance
+        .collection('User')
+        .doc(id)
+        .collection('Booking')
+        .get();
+    return result.docs.map((e) => BookingModel.fromJson(e.data())).toList();
+  }
 }

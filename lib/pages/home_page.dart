@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hotelio_app/config/app.assets.dart';
 import 'package:hotelio_app/config/app.color.dart';
 import 'package:hotelio_app/controller/c_home.dart';
+import 'package:hotelio_app/pages/history_page.dart';
 import 'package:hotelio_app/pages/nearby_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,7 +23,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Obx(() {
         if (cHome.indexPage == 1) {
-          return Center(child: const Text("History"));
+          return HistoryPage();
         } else if (cHome.indexPage == 2) {
           return Center(child: const Text("payment"));
         } else if (cHome.indexPage == 3) {
